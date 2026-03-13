@@ -10,6 +10,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private PlayerInputReader inputReader;
 
     [Header("Movement Settings")]
+    [Tooltip("FOR THE MOVEMENT OF THE PLAYER ")]    
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float runSpeed = 9f;
     [SerializeField] private float jumpHeight = 1.2f;
@@ -100,6 +101,7 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void Start()
     {
+        // intialize the character controller 
         if (characterController == null)
             characterController = GetComponent<CharacterController>();
 
@@ -143,6 +145,7 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void CheckGroundStatus()
     {
+        // ground check 
         Vector3 origin = transform.position + Vector3.up * characterController.radius;
         bool groundHit = Physics.SphereCast(
             origin,
@@ -164,6 +167,7 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void UpdateMovementState()
     {
+        // checking the input here for boolean
         bool wantsToRun = movementEnabled &&
                           inputReader != null &&
                           inputReader.RunHeld &&
@@ -194,10 +198,12 @@ public class FirstPersonPlayerController : MonoBehaviour
         if (characterController == null)
             return;
 
+        // getting the value here for the movement input .
         Vector2 moveInput2D = movementEnabled && inputReader != null
             ? inputReader.MoveInput
             : Vector2.zero;
 
+        // translation of the Player
         Vector3 moveInput = transform.right * moveInput2D.x + transform.forward * moveInput2D.y;
         if (moveInput.magnitude > 1f)
             moveInput.Normalize();
@@ -230,6 +236,7 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void HandleCrouchLogic()
     {
+        // checking if the crouch input is held
         bool crouchHeld = movementEnabled && inputReader != null && inputReader.CrouchHeld;
         _isCrouching = crouchHeld || !CanStandUp();
         _targetHeight = _isCrouching ? crouchHeight : _originalHeight;
@@ -260,6 +267,7 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void HandleCameraControl()
     {
+
         if (!lookEnabled || cameraRoot == null || inputReader == null)
             return;
 
