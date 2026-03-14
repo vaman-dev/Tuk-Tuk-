@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: a6cb27a1e9d04b74eb636a9896e15ac1
+guid: f1029a5efb7382346a2dc8f5ce80676c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Tuktuk_baseColor
-    second: {fileID: 2800000, guid: d51028368784fe8488da2912a914f369, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Tuktuk_retro_baseColor
-    second: {fileID: 2800000, guid: 32406d3dbf36d7746b65615e1a586ac0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Tuktuk_wheel_baseColor
-    second: {fileID: 2800000, guid: f2f6b821d970b4a40bda4c309b59e66a, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
