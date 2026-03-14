@@ -210,12 +210,12 @@ public class FirstPersonPlayerController : MonoBehaviour
     }
 
     private void HandleMovement()
-    {
-        if (characterController == null || !characterController.enabled)
+    {    
+     if (characterController == null || !characterController.enabled)
             return;
 
-        // getting the value here for the movement input .
-        Vector2 moveInput2D = movementEnabled && inputReader != null
+    // getting the value here for the movement input .
+    Vector2 moveInput2D = movementEnabled && inputReader != null
             ? inputReader.MoveInput
             : Vector2.zero;
 
