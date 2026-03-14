@@ -492,7 +492,7 @@
                 {
                     "name": "Steer",
                     "type": "Button",
-                    "id": "7bfc3afc-db88-406f-8e4c-40f01d81466c",
+                    "id": "3cb76842-361d-4e65-806b-5a430122ae27",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -501,7 +501,7 @@
                 {
                     "name": "Drive",
                     "type": "Button",
-                    "id": "481f0bc9-9163-4b93-8b20-ffbf71d40872",
+                    "id": "ae31df4a-0bf0-4aae-a51f-f06cbecca2ab",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -510,7 +510,7 @@
                 {
                     "name": "HandBrake",
                     "type": "Button",
-                    "id": "fcc42e69-0132-428a-833f-16dd07223617",
+                    "id": "f54f0f4b-7408-4321-a12e-81f0e255fcb9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -531,7 +531,7 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "aa00837c-c569-447c-a5f8-d6dd1eb89806",
+                    "id": "f04190f6-9be7-4938-892a-64d72bf3d6e5",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -542,7 +542,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "a6175ecc-6a72-418f-849a-216bb73d8d0c",
+                    "id": "9f5d06cf-fae8-4cda-aa22-a3a18b77553c",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -553,7 +553,7 @@
                 },
                 {
                     "name": "positive",
-                    "id": "64c97d25-9104-451c-a83d-7d84863f79f7",
+                    "id": "8b6f626c-3c1f-443d-b76d-37c5874bc979",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -564,7 +564,7 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "262eb9fe-b0ae-4377-b59e-4e9443a3e4af",
+                    "id": "ce749a4a-3071-4bc0-a4ac-666859ac4db1",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -575,7 +575,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "92856b16-1aba-4dca-aa4f-134f66c2a704",
+                    "id": "44dcf63d-2bc4-4f92-8afd-acf8967215b3",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -586,7 +586,7 @@
                 },
                 {
                     "name": "positive",
-                    "id": "3be6fee1-329b-4a75-822f-7a037c4153d0",
+                    "id": "fac8fe16-c91b-4f48-b9bb-95edd4d791b1",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -597,7 +597,7 @@
                 },
                 {
                     "name": "",
-                    "id": "9fee6d9c-4e29-4299-80ce-284b48ebf351",
+                    "id": "c2ccb0d4-be66-4441-904d-96713742b575",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
