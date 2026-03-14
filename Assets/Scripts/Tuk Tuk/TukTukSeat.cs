@@ -9,8 +9,8 @@ public class TukTukSeat : MonoBehaviour, IInteractable
     [SerializeField] private Transform visualSeatPoint;
     [SerializeField] private Transform mountParent;
 
-    [Header("Vehicle References")]
-    [SerializeField] private TukTukController tukTukController;
+    [Header("Vehicle SCC References")]
+    [SerializeField] private SCCPlayerInputBridge sccPlayerInputBridge;
 
     [Header("Interaction")]
     [SerializeField] private string interactionPrompt = "Press E to Enter Tuk Tuk";
@@ -22,7 +22,7 @@ public class TukTukSeat : MonoBehaviour, IInteractable
     public Transform ExitPoint => exitPoint;
     public Transform VisualSeatPoint => visualSeatPoint;
     public Transform MountParent => mountParent != null ? mountParent : transform;
-    public TukTukController TukTukController => tukTukController;
+    public SCCPlayerInputBridge SCCPlayerInputBridge => sccPlayerInputBridge;
     public bool IsOccupied => _isOccupied;
     public PlayerVehicleMount CurrentMount => _currentMount;
 
@@ -32,6 +32,7 @@ public class TukTukSeat : MonoBehaviour, IInteractable
             return;
 
         PlayerVehicleMount mount = interactor.GetComponent<PlayerVehicleMount>();
+
         if (mount == null)
         {
             Debug.LogWarning("[TukTukSeat] No PlayerVehicleMount found on interacting player.", this);
@@ -56,8 +57,8 @@ public class TukTukSeat : MonoBehaviour, IInteractable
         _currentMount = mount;
         _isOccupied = true;
 
-        if (tukTukController != null)
-            tukTukController.SetDriverActive(true);
+        if (sccPlayerInputBridge != null && mount != null)
+            sccPlayerInputBridge.SetDriver(mount.InputReader);
     }
 
     public void OnPlayerExited(PlayerVehicleMount mount)
@@ -67,8 +68,8 @@ public class TukTukSeat : MonoBehaviour, IInteractable
 
         _isOccupied = false;
 
-        if (tukTukController != null)
-            tukTukController.SetDriverActive(false);
+        if (sccPlayerInputBridge != null)
+            sccPlayerInputBridge.ClearDriver();
     }
 
     private void OnDrawGizmosSelected()

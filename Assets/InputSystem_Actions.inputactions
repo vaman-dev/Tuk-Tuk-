@@ -491,26 +491,26 @@
                 },
                 {
                     "name": "Steer",
-                    "type": "Value",
-                    "id": "7ec576f4-547e-4a65-b440-ec7d334badfc",
-                    "expectedControlType": "Axis",
+                    "type": "Button",
+                    "id": "7bfc3afc-db88-406f-8e4c-40f01d81466c",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Drive",
-                    "type": "Value",
-                    "id": "41e2be33-602b-410e-a66f-17523296e821",
-                    "expectedControlType": "Axis",
+                    "type": "Button",
+                    "id": "481f0bc9-9163-4b93-8b20-ffbf71d40872",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "Brake",
+                    "name": "HandBrake",
                     "type": "Button",
-                    "id": "18d8efc8-8b87-49f4-af97-6bdc2c54ca44",
+                    "id": "fcc42e69-0132-428a-833f-16dd07223617",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -531,7 +531,7 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "b4747183-7389-470d-bd37-9b374d7e2128",
+                    "id": "aa00837c-c569-447c-a5f8-d6dd1eb89806",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -542,7 +542,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "85f6c7df-ab6c-48be-a8fa-8cba156ff339",
+                    "id": "a6175ecc-6a72-418f-849a-216bb73d8d0c",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -553,7 +553,7 @@
                 },
                 {
                     "name": "positive",
-                    "id": "8f11e676-7bdb-47a4-a142-d29b49f96ae9",
+                    "id": "64c97d25-9104-451c-a83d-7d84863f79f7",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -564,7 +564,7 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "d8282578-ffe5-416b-94d8-0982de691f3c",
+                    "id": "262eb9fe-b0ae-4377-b59e-4e9443a3e4af",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -575,7 +575,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "7c6feac4-2553-4b88-8bd2-33e5ff45f806",
+                    "id": "92856b16-1aba-4dca-aa4f-134f66c2a704",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -586,8 +586,8 @@
                 },
                 {
                     "name": "positive",
-                    "id": "b7331983-6b73-448d-b948-87f6966e6bfb",
-                    "path": "<Keyboard>/anyKey",
+                    "id": "3be6fee1-329b-4a75-822f-7a037c4153d0",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -597,12 +597,12 @@
                 },
                 {
                     "name": "",
-                    "id": "28d4fde6-a22a-45f5-ada8-3ecb3b58215e",
+                    "id": "9fee6d9c-4e29-4299-80ce-284b48ebf351",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Brake",
+                    "groups": "",
+                    "action": "HandBrake",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
