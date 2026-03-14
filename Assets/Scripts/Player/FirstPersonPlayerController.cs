@@ -129,6 +129,22 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (characterController == null)
+            return;
+
+        if (!characterController.enabled)
+        {
+            HandleCameraControl();
+
+            if (enableCameraTilt)
+                HandleCameraTilt();
+
+            if (enableRunFov)
+                HandleFovChange();
+
+            return;
+        }
+
         CheckGroundStatus();
         HandleCrouchLogic();
         UpdateMovementState();
@@ -195,7 +211,7 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (characterController == null)
+        if (characterController == null || !characterController.enabled)
             return;
 
         // getting the value here for the movement input .

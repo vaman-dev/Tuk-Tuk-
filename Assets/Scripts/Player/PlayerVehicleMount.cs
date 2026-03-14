@@ -21,7 +21,6 @@ public class PlayerVehicleMount : MonoBehaviour
     private TukTukSeat _currentSeat;
 
     private Transform _originalRootParent;
-
     private Transform _originalVisualParent;
     private Vector3 _originalVisualLocalPosition;
     private Quaternion _originalVisualLocalRotation;
@@ -29,6 +28,7 @@ public class PlayerVehicleMount : MonoBehaviour
 
     public bool IsInVehicle => _currentSeat != null;
     public TukTukSeat CurrentSeat => _currentSeat;
+    public PlayerInputReader InputReader => inputReader;
 
     private void Awake()
     {
@@ -68,10 +68,7 @@ public class PlayerVehicleMount : MonoBehaviour
             characterController.enabled = false;
 
         if (parentPlayerToVehicle)
-        {
-            Transform targetParent = seat.MountParent;
-            transform.SetParent(targetParent, true);
-        }
+            transform.SetParent(seat.MountParent, true);
 
         if (seat.SeatPoint != null)
         {
