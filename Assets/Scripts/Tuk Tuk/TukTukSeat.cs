@@ -39,7 +39,7 @@ public class TukTukSeat : MonoBehaviour, IInteractable
     public bool IsOccupiedByPlayer => _currentPlayerMount != null;
 
     /// <summary>
-    /// Returns true if ALL NPC back seats are occupied.
+    /// Returns true if ALL NPC back seats are occupied or reserved.
     /// </summary>
     public bool AreAllNPCSeatsOccupied
     {
@@ -50,7 +50,7 @@ public class TukTukSeat : MonoBehaviour, IInteractable
 
             for (int i = 0; i < npcBackSeats.Count; i++)
             {
-                if (!npcBackSeats[i].IsOccupied)
+                if (!npcBackSeats[i].IsOccupied && !npcBackSeats[i].IsReserved)
                     return false;
             }
 
@@ -68,7 +68,7 @@ public class TukTukSeat : MonoBehaviour, IInteractable
 
         for (int i = 0; i < npcBackSeats.Count; i++)
         {
-            if (!npcBackSeats[i].IsOccupied)
+            if (!npcBackSeats[i].IsOccupied && !npcBackSeats[i].IsReserved)
                 return npcBackSeats[i];
         }
 
@@ -88,7 +88,7 @@ public class TukTukSeat : MonoBehaviour, IInteractable
 
         for (int i = 0; i < npcBackSeats.Count; i++)
         {
-            if (npcBackSeats[i].IsOccupied)
+            if (npcBackSeats[i].IsOccupied || npcBackSeats[i].IsReserved)
                 continue;
 
             if (npcBackSeats[i].SeatPoint == null)
@@ -189,7 +189,7 @@ public class TukTukSeat : MonoBehaviour, IInteractable
             for (int i = 0; i < npcBackSeats.Count; i++)
             {
                 NPCBackSeat bs = npcBackSeats[i];
-                Color seatColor = bs.IsOccupied ? Color.red : Color.blue;
+                Color seatColor = bs.IsOccupied ? Color.red : (bs.IsReserved ? Color.yellow : Color.blue);
 
                 if (bs.SeatPoint != null)
                 {
@@ -224,18 +224,39 @@ public class NPCBackSeat
 
     [System.NonSerialized] private NPCVehicleMount _currentNPC;
     [System.NonSerialized] private bool _isOccupied;
+    [System.NonSerialized] private NPCVehicleMount _reservedBy;
 
     public string SeatName => seatName;
     public Transform SeatPoint => seatPoint;
     public Transform ExitPoint => exitPoint;
     public Transform VisualSeatPoint => visualSeatPoint;
     public bool IsOccupied => _isOccupied;
+    public bool IsReserved => _reservedBy != null;
     public NPCVehicleMount CurrentNPC => _currentNPC;
+
+    public bool TryReserve(NPCVehicleMount mount)
+    {
+        if (_isOccupied || _reservedBy != null)
+            return false;
+
+        _reservedBy = mount;
+        return true;
+    }
+
+    public void ClearReservation(NPCVehicleMount mount)
+    {
+        if (_reservedBy == mount)
+            _reservedBy = null;
+    }
 
     public void OnNPCEntered(NPCVehicleMount mount)
     {
         _currentNPC = mount;
         _isOccupied = true;
+
+        // Clear reservation since NPC is now seated
+        if (_reservedBy == mount)
+            _reservedBy = null;
     }
 
     public void OnNPCExited(NPCVehicleMount mount)

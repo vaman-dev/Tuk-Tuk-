@@ -28,7 +28,7 @@ public class NPCSeatManager : MonoBehaviour
 
         if (tukTukSeat.AreAllNPCSeatsOccupied)
         {
-            Debug.Log($"[NPCSeatManager] {name} | All {tukTukSeat.NPCBackSeatCount} NPC back seats are occupied.", this);
+            Debug.Log($"[NPCSeatManager] {name} | All {tukTukSeat.NPCBackSeatCount} NPC back seats are occupied or reserved.", this);
             return false;
         }
 
@@ -40,7 +40,14 @@ public class NPCSeatManager : MonoBehaviour
             return false;
         }
 
-        Debug.Log($"[NPCSeatManager] {name} | Assigning NPC '{npcMount.name}' -> seat '{availableSeat.SeatName}' | " +
+        // Reserve the seat immediately so no other NPC can claim it
+        if (!availableSeat.TryReserve(npcMount))
+        {
+            Debug.Log($"[NPCSeatManager] {name} | Failed to reserve seat '{availableSeat.SeatName}' for NPC '{npcMount.name}'.", this);
+            return false;
+        }
+
+        Debug.Log($"[NPCSeatManager] {name} | Reserved & assigning NPC '{npcMount.name}' -> seat '{availableSeat.SeatName}' | " +
                   $"SeatPoint={(availableSeat.SeatPoint != null ? availableSeat.SeatPoint.name : "NULL")} | " +
                   $"ExitPoint={(availableSeat.ExitPoint != null ? availableSeat.ExitPoint.name : "NULL")} | " +
                   $"VisualSeatPoint={(availableSeat.VisualSeatPoint != null ? availableSeat.VisualSeatPoint.name : "NULL")}", this);
