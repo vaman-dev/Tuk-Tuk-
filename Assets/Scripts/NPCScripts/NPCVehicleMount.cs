@@ -65,6 +65,7 @@ public class NPCVehicleMount : MonoBehaviour
         if (backSeat.IsOccupied)
         {
             Debug.Log($"[NPCVehicleMount] {name} | Seat '{backSeat.SeatName}' is already occupied.", this);
+            backSeat.ClearReservation(this);
             return;
         }
 
@@ -119,6 +120,21 @@ public class NPCVehicleMount : MonoBehaviour
         {
             Debug.LogError($"[NPCVehicleMount] {name} | MountSeat: _currentBackSeat is NULL!", this);
             _isWalkingToSeat = false;
+            return;
+        }
+
+        // If someone else occupied the seat while we were walking
+        if (_currentBackSeat.IsOccupied)
+        {
+            Debug.Log($"[NPCVehicleMount] {name} | Seat '{_currentBackSeat.SeatName}' was taken while walking. Aborting mount.", this);
+            _currentBackSeat.ClearReservation(this);
+            _currentBackSeat = null;
+            _currentTukTuk = null;
+            _isWalkingToSeat = false;
+
+            if (brain != null)
+                brain.OnSeatUnavailable();
+
             return;
         }
 

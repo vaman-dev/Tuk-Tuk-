@@ -41,7 +41,7 @@ public class SCC_Drivetrain : MonoBehaviour {
         public SCC_Wheel wheelCollider;
 
         public bool isSteering = false;
-        [Range(-45f, 45f)] public float steeringAngle = 25f;
+        [Range(-150f, 150f)] public float steeringAngle = 100f;
         public bool isTraction = false;
         public bool isBrake = false;
         public bool isHandbrake = false;
@@ -77,7 +77,7 @@ public class SCC_Drivetrain : MonoBehaviour {
     public int direction = 1;       //  Direction. 1 = forward -1 = reverse.
     public float finalDriveRatio = 3.2f;        //  Final drive ratio.
 
-    public float highSpeedSteerAngle = 100f;        //  Vehicle will apply minimal steer angle at this speed.
+    public float highSpeedSteerAngle = 200f;        //  Vehicle will apply minimal steer angle at this speed.
 
     private float timerForReverse = 0f;     //  Detecting reverse gear.
     private bool appliedBrake = false;

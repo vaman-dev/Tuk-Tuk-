@@ -13,7 +13,12 @@ public class NPCInteraction : MonoBehaviour
     [SerializeField] private LayerMask vehicleLayerMask;
     [SerializeField] private Transform interactionPoint;
 
+    [Header("Fallback")]
+    [Tooltip("How many scans with no available seat before this NPC reverts to Pedestrian.")]
+    [SerializeField] private int maxFailedScans = 5;
+
     private float _detectionTimer;
+    private int _failedScanCount;
     private readonly Collider[] _overlapResults = new Collider[10];
 
     private void Awake()
@@ -57,6 +62,7 @@ public class NPCInteraction : MonoBehaviour
         if (count == 0)
         {
             Debug.LogWarning($"[NPCInteraction] {name} | No colliders found. Check: Vehicle Layer Mask is not 'Nothing', Tuk Tuk has a Collider on the correct layer.", this);
+            HandleFailedScan();
             return;
         }
 
@@ -84,6 +90,7 @@ public class NPCInteraction : MonoBehaviour
             if (seatManager.TryAssignSeat(vehicleMount))
             {
                 Debug.Log($"[NPCInteraction] {name} | Seat assigned successfully!", this);
+                _failedScanCount = 0;
                 return;
             }
             else
@@ -93,6 +100,27 @@ public class NPCInteraction : MonoBehaviour
         }
 
         Debug.Log($"[NPCInteraction] {name} | Scan complete. No seat was assigned.", this);
+        HandleFailedScan();
+    }
+
+    private void HandleFailedScan()
+    {
+        _failedScanCount++;
+        Debug.Log($"[NPCInteraction] {name} | Failed scan {_failedScanCount}/{maxFailedScans}.", this);
+
+        if (_failedScanCount >= maxFailedScans)
+        {
+            _failedScanCount = 0;
+            Debug.Log($"[NPCInteraction] {name} | Max failed scans reached. Reverting to Pedestrian.", this);
+
+            if (brain != null)
+                brain.RevertToPedestrian();
+        }
+    }
+
+    public void ResetFailedScans()
+    {
+        _failedScanCount = 0;
     }
 
     private void OnDrawGizmosSelected()

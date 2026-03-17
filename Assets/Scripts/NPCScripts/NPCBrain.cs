@@ -29,6 +29,7 @@ public class NPCBrain : MonoBehaviour
     [Header("References")]
     [SerializeField] private NPCMovement movement;
     [SerializeField] private NPCVehicleMount vehicleMount;
+    [SerializeField] private NPCSeatManager seatManager;
 
     [Header("Roaming")]
     [SerializeField] private float roamRadius = 10f;
@@ -89,11 +90,22 @@ public class NPCBrain : MonoBehaviour
 
         if (role == NPCRole.Passenger)
         {
-            ResetPickupTimer();
-            roleChangeTriggered = true; // already a passenger, no need to convert
-            Debug.Log($"[NPCBrain] {name} | Started as PASSENGER | pickupPoints={pickupPoints.Count} | roamTimer={roamBeforePickupTimer:F1}s", this);
+            // If starting as Passenger, check seat availability first
+            if (seatManager != null && !seatManager.HasAvailableSeat())
+            {
+                Debug.Log($"[NPCBrain] {name} | Started as PASSENGER but no seats available. Falling back to PEDESTRIAN.", this);
+                role = NPCRole.Pedestrian;
+                ResetRoleChangeTimer();
+            }
+            else
+            {
+                ResetPickupTimer();
+                roleChangeTriggered = true;
+                Debug.Log($"[NPCBrain] {name} | Started as PASSENGER | pickupPoints={pickupPoints.Count} | roamTimer={roamBeforePickupTimer:F1}s", this);
+            }
         }
-        else
+
+        if (role == NPCRole.Pedestrian)
         {
             ResetRoleChangeTimer();
             Debug.Log($"[NPCBrain] {name} | Started as PEDESTRIAN | roleChange={enableAutoRoleChange} | roleChangeTimer={roleChangeTimer:F1}s", this);
@@ -145,6 +157,14 @@ public class NPCBrain : MonoBehaviour
 
         if (roleChangeTimer <= 0f)
         {
+            // Check seat availability BEFORE converting to Passenger
+            if (seatManager != null && !seatManager.HasAvailableSeat())
+            {
+                Debug.Log($"[NPCBrain] {name} | Role change timer expired but all seats are occupied/reserved. Staying as Pedestrian.", this);
+                ResetRoleChangeTimer();
+                return;
+            }
+
             roleChangeTriggered = true;
             Debug.Log($"[NPCBrain] {name} | Role change timer expired. Converting Pedestrian -> Passenger.", this);
             SetRole(NPCRole.Passenger);
@@ -189,13 +209,15 @@ public class NPCBrain : MonoBehaviour
         if (currentState == NPCState.WaitingForPickup)
             return;
 
+        // If NPC is in Waiting state (walking to seat via NPCVehicleMount),
+        // let NPCVehicleMount handle it — don't interfere
         if (currentState == NPCState.Waiting)
             return;
 
         if (pickupPoints == null || pickupPoints.Count == 0)
         {
-            Debug.LogWarning($"[NPCBrain] {name} | No pickup points assigned! Roaming instead.", this);
-            HandleRoaming();
+            Debug.LogWarning($"[NPCBrain] {name} | No pickup points assigned! Reverting to Pedestrian.", this);
+            RevertToPedestrian();
             return;
         }
 
@@ -209,20 +231,36 @@ public class NPCBrain : MonoBehaviour
                 return;
             }
 
+            // Check seat availability BEFORE walking to pickup point
+            if (seatManager != null && !seatManager.HasAvailableSeat())
+            {
+                Debug.Log($"[NPCBrain] {name} | Roam timer expired but all seats are occupied/reserved. Reverting to Pedestrian.", this);
+                RevertToPedestrian();
+                return;
+            }
+
             hasHeadedToPickup = true;
             isIdleWaiting = false;
             chosenPickupPoint = GetClosestPickupPoint();
 
             if (chosenPickupPoint == null)
             {
-                Debug.LogWarning($"[NPCBrain] {name} | All pickup points are null! Roaming instead.", this);
-                HandleRoaming();
+                Debug.LogWarning($"[NPCBrain] {name} | All pickup points are null! Reverting to Pedestrian.", this);
+                RevertToPedestrian();
                 return;
             }
 
             Debug.Log($"[NPCBrain] {name} | Roam timer expired. Walking to pickup point '{chosenPickupPoint.name}' at {chosenPickupPoint.position}", this);
             movement.MoveTo(chosenPickupPoint.position);
             SetState(NPCState.Walking);
+            return;
+        }
+
+        // NPC is walking to pickup point — re-check seat availability while walking
+        if (currentState == NPCState.Walking && seatManager != null && !seatManager.HasAvailableSeat())
+        {
+            Debug.Log($"[NPCBrain] {name} | Seats became occupied/reserved while walking to pickup. Reverting to Pedestrian.", this);
+            RevertToPedestrian();
             return;
         }
 
@@ -236,21 +274,8 @@ public class NPCBrain : MonoBehaviour
 
     public void OnSeatUnavailable()
     {
-        Transform otherPoint = GetAlternatePickupPoint();
-
-        if (otherPoint != null)
-        {
-            Debug.Log($"[NPCBrain] {name} | Seat unavailable. Trying alternate pickup point '{otherPoint.name}'.", this);
-            chosenPickupPoint = otherPoint;
-            movement.MoveTo(otherPoint.position);
-            SetState(NPCState.Walking);
-            hasHeadedToPickup = true;
-        }
-        else
-        {
-            Debug.Log($"[NPCBrain] {name} | Seat unavailable. No alternate pickup point. Staying at WaitingForPickup.", this);
-            SetState(NPCState.WaitingForPickup);
-        }
+        Debug.Log($"[NPCBrain] {name} | Seat unavailable. Reverting to Pedestrian.", this);
+        RevertToPedestrian();
     }
 
     private Transform GetClosestPickupPoint()
@@ -360,6 +385,20 @@ public class NPCBrain : MonoBehaviour
             ResetRoleChangeTimer();
             StartIdleWait();
         }
+    }
+
+    /// <summary>
+    /// Called when the NPC cannot find an available seat after multiple attempts.
+    /// Reverts to Pedestrian and restarts the auto role-change timer if enabled.
+    /// </summary>
+    public void RevertToPedestrian()
+    {
+        if (role == NPCRole.Pedestrian)
+            return;
+
+        Debug.Log($"[NPCBrain] {name} | Reverting to Pedestrian. No seats available.", this);
+        spawnPoint = transform.position;
+        SetRole(NPCRole.Pedestrian);
     }
 
     public void SetState(NPCState newState)
