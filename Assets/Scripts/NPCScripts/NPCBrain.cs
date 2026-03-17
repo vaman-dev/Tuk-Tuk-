@@ -40,6 +40,11 @@ public class NPCBrain : MonoBehaviour
     [SerializeField] private float minRoamBeforePickup = 3f;
     [SerializeField] private float maxRoamBeforePickup = 8f;
 
+    [Header("Role Change (Pedestrian → Passenger)")]
+    [SerializeField] private bool enableAutoRoleChange = false;
+    [SerializeField] private float minTimeBeforeRoleChange = 10f;
+    [SerializeField] private float maxTimeBeforeRoleChange = 20f;
+
     [Header("Mood")]
     [SerializeField] private float anger;
     [SerializeField] private float panic;
@@ -65,6 +70,10 @@ public class NPCBrain : MonoBehaviour
     private bool hasHeadedToPickup;
     private Transform chosenPickupPoint;
 
+    // role change timer
+    private float roleChangeTimer;
+    private bool roleChangeTriggered;
+
     private void Awake()
     {
         if (movement == null)
@@ -81,11 +90,13 @@ public class NPCBrain : MonoBehaviour
         if (role == NPCRole.Passenger)
         {
             ResetPickupTimer();
+            roleChangeTriggered = true; // already a passenger, no need to convert
             Debug.Log($"[NPCBrain] {name} | Started as PASSENGER | pickupPoints={pickupPoints.Count} | roamTimer={roamBeforePickupTimer:F1}s", this);
         }
         else
         {
-            Debug.Log($"[NPCBrain] {name} | Started as PEDESTRIAN.", this);
+            ResetRoleChangeTimer();
+            Debug.Log($"[NPCBrain] {name} | Started as PEDESTRIAN | roleChange={enableAutoRoleChange} | roleChangeTimer={roleChangeTimer:F1}s", this);
         }
 
         StartIdleWait();
@@ -97,6 +108,7 @@ public class NPCBrain : MonoBehaviour
             return;
 
         UpdateMood();
+        UpdateRoleChangeTimer();
 
         if (role == NPCRole.Passenger)
             HandlePassengerBehaviour();
@@ -104,6 +116,39 @@ public class NPCBrain : MonoBehaviour
             HandleRoaming();
 
         SyncStateWithMovement();
+    }
+
+    // ── Role Change Timer ──
+
+    private void ResetRoleChangeTimer()
+    {
+        if (enableAutoRoleChange)
+        {
+            roleChangeTimer = Random.Range(minTimeBeforeRoleChange, maxTimeBeforeRoleChange);
+            roleChangeTriggered = false;
+        }
+        else
+        {
+            roleChangeTriggered = true;
+        }
+    }
+
+    private void UpdateRoleChangeTimer()
+    {
+        if (roleChangeTriggered)
+            return;
+
+        if (role != NPCRole.Pedestrian)
+            return;
+
+        roleChangeTimer -= Time.deltaTime;
+
+        if (roleChangeTimer <= 0f)
+        {
+            roleChangeTriggered = true;
+            Debug.Log($"[NPCBrain] {name} | Role change timer expired. Converting Pedestrian -> Passenger.", this);
+            SetRole(NPCRole.Passenger);
+        }
     }
 
     // ── Pedestrian Roaming ──
@@ -296,7 +341,25 @@ public class NPCBrain : MonoBehaviour
 
     public void SetRole(NPCRole newRole)
     {
+        if (role == newRole)
+            return;
+
+        Debug.Log($"[NPCBrain] {name} | Role changed: {role} -> {newRole}", this);
         role = newRole;
+
+        if (newRole == NPCRole.Passenger)
+        {
+            roleChangeTriggered = true;
+            ResetPickupTimer();
+            StartIdleWait();
+        }
+        else if (newRole == NPCRole.Pedestrian)
+        {
+            hasHeadedToPickup = false;
+            chosenPickupPoint = null;
+            ResetRoleChangeTimer();
+            StartIdleWait();
+        }
     }
 
     public void SetState(NPCState newState)

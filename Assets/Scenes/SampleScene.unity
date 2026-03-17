@@ -311,8 +311,12 @@ MonoBehaviour:
   maxIdleTime: 2
   pickupPoints:
   - {fileID: 1050385195}
+  - {fileID: 858335539}
   minRoamBeforePickup: 2
   maxRoamBeforePickup: 3
+  enableAutoRoleChange: 1
+  minTimeBeforeRoleChange: 10
+  maxTimeBeforeRoleChange: 20
   anger: 0
   panic: 0
   angryThreshold: 60
@@ -2098,9 +2102,13 @@ MonoBehaviour:
   minIdleTime: 1.62
   maxIdleTime: 2
   pickupPoints:
+  - {fileID: 1050385195}
   - {fileID: 858335539}
   minRoamBeforePickup: 2
   maxRoamBeforePickup: 3
+  enableAutoRoleChange: 1
+  minTimeBeforeRoleChange: 10
+  maxTimeBeforeRoleChange: 20
   anger: 0
   panic: 0
   angryThreshold: 60
