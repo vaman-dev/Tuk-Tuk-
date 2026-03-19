@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5678178982899962128}
   - component: {fileID: 541579000707946060}
   - component: {fileID: 8856949848852768106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4662503561393547126}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: InteractionPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 2069390259213569596}
   - component: {fileID: 6115218243530549178}
   - component: {fileID: 1922896128318957392}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 8262202216544324682}
   - component: {fileID: 8254188756488424780}
   - component: {fileID: 4071060571193157852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCInteraction
   brain: {fileID: 3245281958158872146}
   vehicleMount: {fileID: 8254188756488424780}
-  detectionRadius: 2
+  detectionRadius: 10
   detectionInterval: 1
   vehicleLayerMask:
     serializedVersion: 2
@@ -415,7 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5827319160797224681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VisvualRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 8564859219276349627}
   - component: {fileID: 1623931157218263489}
   - component: {fileID: 6440656828845727}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 296924634336550235}
   - component: {fileID: 6878182871392050548}
   - component: {fileID: 7964950544171332446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127999461528894858}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,6 +772,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 43a1f435aaaefef46baaa7c0285c44ca, type: 3}
       propertyPath: m_Name
       value: CapHatNookMeshcap0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 43a1f435aaaefef46baaa7c0285c44ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332809968238436118, guid: 43a1f435aaaefef46baaa7c0285c44ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302183323776513565, guid: 43a1f435aaaefef46baaa7c0285c44ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
