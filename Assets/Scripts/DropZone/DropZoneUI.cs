@@ -22,7 +22,7 @@ public class DropZoneUI : MonoBehaviour
     [Tooltip("Shows the total NPCs dropped across all deliveries (e.g. 'Total Dropped: 12')")]
     [SerializeField] private TextMeshProUGUI totalDroppedText;
 
-    [Tooltip("Shows a notification when NPCs are dropped (e.g. 'Dropped 3 passengers!')")]
+    [Tooltip("Shows a notification when NPCs are dropped. Place this OUTSIDE Drop Panel so it stays visible.")]
     [SerializeField] private TextMeshProUGUI dropNotificationText;
 
     [Header("UI Panels")]
@@ -140,12 +140,14 @@ public class DropZoneUI : MonoBehaviour
 
     private void ShowNotification(string message)
     {
-        if (dropNotificationText != null)
+        if (dropNotificationText == null)
         {
-            dropNotificationText.text = message;
-            dropNotificationText.gameObject.SetActive(true);
+            Debug.LogWarning("[DropZoneUI] dropNotificationText is not assigned in the Inspector!", this);
+            return;
         }
 
+        dropNotificationText.text = message;
+        dropNotificationText.gameObject.SetActive(true);
         _notificationTimer = notificationDuration;
     }
 

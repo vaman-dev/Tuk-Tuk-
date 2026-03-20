@@ -38,6 +38,8 @@ public class NPCBrain : MonoBehaviour
 
     [Header("Passenger Settings")]
     [SerializeField] private List<Transform> pickupPoints = new List<Transform>();
+    [Tooltip("Max distance from NPC to a pickup point for the NPC to approach it. NPCs farther than this will revert to Pedestrian.")]
+    [SerializeField] private float closestDistance = 30f;
     [SerializeField] private float minRoamBeforePickup = 3f;
     [SerializeField] private float maxRoamBeforePickup = 8f;
 
@@ -245,7 +247,7 @@ public class NPCBrain : MonoBehaviour
 
             if (chosenPickupPoint == null)
             {
-                Debug.LogWarning($"[NPCBrain] {name} | All pickup points are null! Reverting to Pedestrian.", this);
+                Debug.LogWarning($"[NPCBrain] {name} | No pickup point within closestDistance ({closestDistance}). Reverting to Pedestrian.", this);
                 RevertToPedestrian();
                 return;
             }
@@ -289,6 +291,11 @@ public class NPCBrain : MonoBehaviour
                 continue;
 
             float dist = Vector3.Distance(transform.position, pickupPoints[i].position);
+
+            // Skip pickup points beyond the max allowed distance
+            if (dist > closestDistance)
+                continue;
+
             if (dist < closestDist)
             {
                 closestDist = dist;
@@ -543,5 +550,9 @@ public class NPCBrain : MonoBehaviour
                 Gizmos.DrawLine(transform.position, pickupPoints[i].position);
             }
         }
+
+        // Draw closestDistance radius
+        Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
+        Gizmos.DrawWireSphere(transform.position, closestDistance);
     }
 }
