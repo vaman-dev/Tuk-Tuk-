@@ -340,6 +340,7 @@ MonoBehaviour:
   pickupPoints:
   - {fileID: 0}
   - {fileID: 0}
+  closestDistance: 40
   minRoamBeforePickup: 2
   maxRoamBeforePickup: 3
   enableAutoRoleChange: 1
