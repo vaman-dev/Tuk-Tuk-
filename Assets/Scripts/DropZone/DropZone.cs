@@ -14,9 +14,11 @@ public class DropZone : MonoBehaviour
     [Header("NPC Exit Points")]
     [SerializeField] private List<Transform> npcExitPoints = new List<Transform>();
 
-    [Header("Visual")]
-    [SerializeField] private GameObject activeVisual;
-    [SerializeField] private GameObject inactiveVisual;
+    [Header("Drop Effect")]
+    [Tooltip("Assign the particle/VFX child object that shows the drop location effect (e.g. purple pillar).")]
+    [SerializeField] private GameObject dropEffect;
+    [Tooltip("If true, the drop effect will use the ParticleSystem Play/Stop API instead of SetActive.")]
+    [SerializeField] private bool useParticleSystemAPI = false;
 
     [Header("Settings")]
     [SerializeField] private float cooldownAfterDrop = 10f;
@@ -27,11 +29,19 @@ public class DropZone : MonoBehaviour
     private bool _isActive;
     private float _cooldownTimer;
     private int _nextExitPointIndex;
+    private ParticleSystem _dropParticleSystem;
 
     public string ZoneName => zoneName;
     public bool IsActive => _isActive;
     public Vector3 Position => transform.position;
     public int ExitPointCount => npcExitPoints != null ? npcExitPoints.Count : 0;
+
+    private void Awake()
+    {
+        // Cache the ParticleSystem reference if using the API approach
+        if (dropEffect != null && useParticleSystemAPI)
+            _dropParticleSystem = dropEffect.GetComponent<ParticleSystem>();
+    }
 
     private void Start()
     {
@@ -125,10 +135,7 @@ public class DropZone : MonoBehaviour
         _isActive = true;
         _nextExitPointIndex = 0;
 
-        if (activeVisual != null)
-            activeVisual.SetActive(true);
-        if (inactiveVisual != null)
-            inactiveVisual.SetActive(false);
+        ShowDropEffect(true);
 
         if (logEvents)
             Debug.Log($"[DropZone] '{zoneName}' | ACTIVATED | exitPoints={ExitPointCount}", this);
@@ -141,10 +148,7 @@ public class DropZone : MonoBehaviour
     {
         _isActive = false;
 
-        if (activeVisual != null)
-            activeVisual.SetActive(false);
-        if (inactiveVisual != null)
-            inactiveVisual.SetActive(true);
+        ShowDropEffect(false);
 
         if (logEvents)
             Debug.Log($"[DropZone] '{zoneName}' | DEACTIVATED", this);
@@ -168,6 +172,36 @@ public class DropZone : MonoBehaviour
     public bool CanBeActivated()
     {
         return !_isActive && _cooldownTimer <= 0f;
+    }
+
+    /// <summary>
+    /// Enables or disables the drop effect visual/particle at this zone's location.
+    /// </summary>
+    private void ShowDropEffect(bool show)
+    {
+        if (dropEffect == null)
+            return;
+
+        if (useParticleSystemAPI && _dropParticleSystem != null)
+        {
+            if (show)
+            {
+                dropEffect.SetActive(true);
+                _dropParticleSystem.Play();
+            }
+            else
+            {
+                _dropParticleSystem.Stop();
+                dropEffect.SetActive(false);
+            }
+        }
+        else
+        {
+            dropEffect.SetActive(show);
+        }
+
+        if (logEvents)
+            Debug.Log($"[DropZone] '{zoneName}' | Drop effect {(show ? "SHOWN" : "HIDDEN")}", this);
     }
 
     private void OnDrawGizmos()
