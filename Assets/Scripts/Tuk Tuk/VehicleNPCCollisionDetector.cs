@@ -13,6 +13,16 @@ public class VehicleNPCCollisionDetector : MonoBehaviour
     [SerializeField] private float panicAmountOnHit = 50f;
     [SerializeField] private float angerAmountOnHit = 30f;
 
+    [Header("Hit Sound")]
+    [SerializeField] private AudioSource hitAudioSource;
+    [Tooltip("Assign one or more hit sound clips. A random one will be played on each hit.")]
+    [SerializeField] private AudioClip[] hitSoundClips;
+    [SerializeField, Range(0f, 1f)] private float hitSoundVolume = 1f;
+    [Tooltip("If true, pitch will vary slightly per hit for natural feel.")]
+    [SerializeField] private bool randomizePitch = true;
+    [SerializeField, Range(0.8f, 1.2f)] private float minPitch = 0.9f;
+    [SerializeField, Range(0.8f, 1.2f)] private float maxPitch = 1.1f;
+
     [Header("Debug")]
     [SerializeField] private bool logCollisions = false;
 
@@ -73,6 +83,9 @@ public class VehicleNPCCollisionDetector : MonoBehaviour
         if (logCollisions)
             Debug.Log($"[VehicleNPCCollisionDetector] HIT NPC '{npcBrain.name}' | velocity={impactVelocity:F1}", this);
 
+        // Play hit sound
+        PlayHitSound();
+
         // Report to DangerStarManager
         if (DangerStarManager.Instance != null)
         {
@@ -86,6 +99,23 @@ public class VehicleNPCCollisionDetector : MonoBehaviour
         // Trigger NPC mood reactions
         npcBrain.AddPanic(panicAmountOnHit);
         npcBrain.AddAnger(angerAmountOnHit);
+    }
+
+    private void PlayHitSound()
+    {
+        if (hitAudioSource == null || hitSoundClips == null || hitSoundClips.Length == 0)
+            return;
+
+        AudioClip clip = hitSoundClips[Random.Range(0, hitSoundClips.Length)];
+        if (clip == null)
+            return;
+
+        if (randomizePitch)
+            hitAudioSource.pitch = Random.Range(minPitch, maxPitch);
+        else
+            hitAudioSource.pitch = 1f;
+
+        hitAudioSource.PlayOneShot(clip, hitSoundVolume);
     }
 
     /// <summary>
