@@ -1904,7 +1904,7 @@ Transform:
   m_GameObject: {fileID: 98579891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.841, y: 1.639, z: -1.278}
+  m_LocalPosition: {x: -0.821, y: 0.494, z: -0.976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7323,6 +7323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -307
@@ -7362,6 +7366,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8029,6 +8041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4071060571193157852, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: vehicleLayerMask.m_Bits
       value: 64
@@ -8072,6 +8088,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8322,8 +8346,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 29
+  m_fontSizeBase: 29
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8361,7 +8385,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -188.56299, w: 98.54608}
+  m_margin: {x: 0, y: 0, z: -235.59961, w: 98.54608}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14946,6 +14970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -297.40002
@@ -14985,6 +15013,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18919,6 +18955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -322.7
@@ -18958,6 +18998,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19787,6 +19835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -179.5
@@ -19826,6 +19878,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21269,6 +21329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -204.6
@@ -21308,6 +21372,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8564859219276349627, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -28130,6 +28202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -146.2
@@ -28169,6 +28245,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32711,6 +32795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4071060571193157852, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: vehicleLayerMask.m_Bits
       value: 64
@@ -32754,6 +32842,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38245,7 +38341,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: af06ce55a27e0ab489a48111a4aa5093, type: 3}
 --- !u!64 &1625938317
@@ -41791,6 +41887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -67.9
@@ -41830,6 +41930,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44377,6 +44485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -201.5
@@ -44416,6 +44528,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45175,6 +45295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -322.7
@@ -45214,6 +45338,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45510,6 +45642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -175.40001
@@ -45549,6 +45685,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46830,6 +46974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -236
@@ -46869,6 +47017,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62607,7 +62763,7 @@ Transform:
   m_GameObject: {fileID: 2109140026}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.745, y: 1.639, z: -1.278}
+  m_LocalPosition: {x: 0.745, y: 0.494, z: -0.976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63994,6 +64150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -162.6
@@ -64033,6 +64193,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64216,6 +64384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.8
@@ -64255,6 +64427,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66634,6 +66814,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -41.4
@@ -66673,6 +66857,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67510,6 +67702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -162.6
@@ -67549,6 +67745,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -68310,6 +68514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -66.3
@@ -68349,6 +68557,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -69146,6 +69362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.8
@@ -69185,6 +69405,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -69705,8 +69933,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8301767, y: 1, z: 1.3526924}
-  m_Center: {x: 0.3266249, y: 0, z: -0.5740052}
+  m_Size: {x: 1.8301767, y: 0.3458317, z: 1.3526924}
+  m_Center: {x: 0.3266249, y: -0.467283, z: -0.5740052}
 --- !u!4 &3625929796994582653
 Transform:
   m_ObjectHideFlags: 0
@@ -69843,8 +70071,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5388567, y: 1, z: 1.3500297}
-  m_Center: {x: -0.17092797, y: 0, z: 0.17501509}
+  m_Size: {x: 2.5388567, y: 0.3458317, z: 1.3500297}
+  m_Center: {x: -0.17092797, y: -0.467283, z: 0.17501509}
 --- !u!1 &3675877951259924348
 GameObject:
   m_ObjectHideFlags: 0
@@ -70985,6 +71213,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8758570559659684296}
     - target: {fileID: 3245281958158872146, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxWaitForPickupTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245281958158872146, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: 'pickupPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1050385195}
@@ -70995,6 +71227,10 @@ PrefabInstance:
     - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_Name
       value: NPC (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71035,6 +71271,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -72303,6 +72547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -162.6
@@ -72342,6 +72590,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -72508,6 +72764,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -29.8
@@ -72547,6 +72807,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -73220,6 +73488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -91.6
@@ -73259,6 +73531,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -73340,8 +73620,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7664097, y: 0.99162066, z: 1.5676323}
-  m_Center: {x: 0.89687127, y: -0.24581054, z: -0.5937366}
+  m_Size: {x: 0.7664097, y: 0.3458317, z: 1.5676287}
+  m_Center: {x: 0.89687127, y: -0.467283, z: -0.5937348}
 --- !u!4 &6335149456285418965
 Transform:
   m_ObjectHideFlags: 0
@@ -73516,6 +73796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -91.600006
@@ -73555,6 +73839,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -74011,6 +74303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.3
@@ -74050,6 +74346,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -80555,8 +80859,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9375246, y: 0.8902003, z: 1.5605108}
-  m_Center: {x: -0.9824287, y: -0.19510022, z: -0.6439134}
+  m_Size: {x: 0.93752253, y: 0.34583172, z: 1.5605106}
+  m_Center: {x: -0.9824295, y: -0.46728295, z: -0.64391345}
 --- !u!1 &7785206688247617815
 GameObject:
   m_ObjectHideFlags: 0
@@ -80878,6 +81182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -75.9
@@ -80917,6 +81225,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -81330,10 +81646,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8758570559659684296}
     - target: {fileID: 3245281958158872146, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
-      propertyPath: closestDistance
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 3245281958158872146, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: 'pickupPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1050385195}
@@ -81345,21 +81657,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
-    - target: {fileID: 4071060571193157852, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
-      propertyPath: vehicleLayerMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.2
+      value: -7.99
       objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: -0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.79
+      value: -12.04
       objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -81388,6 +81696,10 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -81611,6 +81923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -44.5
@@ -81650,6 +81966,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8564859219276349627, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -87924,6 +88248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3496350378376013379, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -149.51
@@ -87963,6 +88291,14 @@ PrefabInstance:
     - target: {fileID: 6393919276051387118, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: maxExitAnimWait
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254188756488424780, guid: 8e81d4bb5602b98428b2aa6a560b1fa3, type: 3}
+      propertyPath: alignVisualToSeatPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
