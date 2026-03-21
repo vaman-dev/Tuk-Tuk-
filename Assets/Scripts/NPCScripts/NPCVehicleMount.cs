@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 [DisallowMultipleComponent]
@@ -7,18 +7,30 @@ public class NPCVehicleMount : MonoBehaviour
     [Header("References")]
     [SerializeField] private NPCBrain brain;
     [SerializeField] private NPCMovement movement;
+    [SerializeField] private NPCAnimator npcAnimator;
 
     [Header("NPC Visual")]
     [SerializeField] private Transform visualRoot;
 
     [Header("Settings")]
     [SerializeField] private bool alignVisualToSeatPoint = true;
+    [Tooltip("Max time to wait for sit animation before force-seating. Prevents NPCs getting stuck if Animation Event is missing.")]
+    [SerializeField] private float maxSitAnimWait = 3f;
+    [Tooltip("Max time to wait for stand-up animation (on the seat) before force-exiting. " +
+             "Increase this if your StandUp clip is long. Decrease for a faster fallback.")]
+    [SerializeField] private float maxExitAnimWait = 3f;
 
     private TukTukSeat _currentTukTuk;
     private NPCBackSeat _currentBackSeat;
     private NavMeshAgent _agent;
+    private CapsuleCollider _capsuleCollider;
+    private Rigidbody _rigidbody;
     private bool _isMounted;
     private bool _isWalkingToSeat;
+    private bool _isPlayingSitAnim;
+    private float _sitAnimTimer;
+    private bool _isPlayingExitAnim;
+    private float _exitAnimTimer;
 
     private Transform _originalVisualParent;
     private Vector3 _originalVisualLocalPosition;
@@ -37,9 +49,64 @@ public class NPCVehicleMount : MonoBehaviour
         if (movement == null)
             movement = GetComponent<NPCMovement>();
 
+        if (npcAnimator == null)
+            npcAnimator = GetComponent<NPCAnimator>();
+
         _agent = GetComponent<NavMeshAgent>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
+        _rigidbody = GetComponent<Rigidbody>();
 
         CacheOriginalVisualState();
+    }
+
+    private void OnEnable()
+    {
+        if (npcAnimator != null)
+        {
+            npcAnimator.OnSitComplete += HandleSitComplete;
+            npcAnimator.OnStandComplete += HandleStandComplete;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (npcAnimator != null)
+        {
+            npcAnimator.OnSitComplete -= HandleSitComplete;
+            npcAnimator.OnStandComplete -= HandleStandComplete;
+        }
+
+        CleanupOnDestroyOrDisable();
+    }
+
+    private void OnDestroy()
+    {
+        CleanupOnDestroyOrDisable();
+    }
+
+    private void CleanupOnDestroyOrDisable()
+    {
+        if (_currentBackSeat != null)
+        {
+            if (_isMounted)
+            {
+                _currentBackSeat.OnNPCExited(this);
+                Debug.Log($"[NPCVehicleMount] {name} | Cleanup: force-exited seat '{_currentBackSeat.SeatName}' on disable/destroy.", this);
+            }
+            else
+            {
+                _currentBackSeat.ClearReservation(this);
+                Debug.Log($"[NPCVehicleMount] {name} | Cleanup: cleared reservation on seat '{_currentBackSeat.SeatName}' on disable/destroy.", this);
+            }
+
+            _currentBackSeat = null;
+        }
+
+        _currentTukTuk = null;
+        _isMounted = false;
+        _isWalkingToSeat = false;
+        _isPlayingSitAnim = false;
+        _isPlayingExitAnim = false;
     }
 
     public void WalkToAndEnter(TukTukSeat tukTuk, NPCBackSeat backSeat)
@@ -88,17 +155,31 @@ public class NPCVehicleMount : MonoBehaviour
 
     private void Update()
     {
-        // only process while walking to a seat, not after already mounted
-        if (!_isWalkingToSeat)
-            return;
-
-        if (movement == null)
-            return;
-
-        if (movement.HasReachedDestination())
+        if (_isWalkingToSeat && movement != null && movement.HasReachedDestination())
         {
             Debug.Log($"[NPCVehicleMount] {name} | Arrived at seat point. Mounting seat '{_currentBackSeat?.SeatName}'...", this);
             MountSeat();
+            return;
+        }
+
+        if (_isPlayingSitAnim)
+        {
+            _sitAnimTimer -= Time.deltaTime;
+            if (_sitAnimTimer <= 0f)
+            {
+                Debug.LogWarning($"[NPCVehicleMount] {name} | Sit animation timed out after {maxSitAnimWait}s. Force-seating.", this);
+                HandleSitComplete();
+            }
+        }
+
+        if (_isPlayingExitAnim)
+        {
+            _exitAnimTimer -= Time.deltaTime;
+            if (_exitAnimTimer <= 0f)
+            {
+                Debug.LogWarning($"[NPCVehicleMount] {name} | Stand animation timed out after {maxExitAnimWait}s. Force-finishing exit.", this);
+                HandleStandComplete();
+            }
         }
     }
 
@@ -123,7 +204,6 @@ public class NPCVehicleMount : MonoBehaviour
             return;
         }
 
-        // If someone else occupied the seat while we were walking
         if (_currentBackSeat.IsOccupied)
         {
             Debug.Log($"[NPCVehicleMount] {name} | Seat '{_currentBackSeat.SeatName}' was taken while walking. Aborting mount.", this);
@@ -138,7 +218,6 @@ public class NPCVehicleMount : MonoBehaviour
             return;
         }
 
-        // prevent double mount
         _isWalkingToSeat = false;
         _isMounted = true;
 
@@ -151,6 +230,7 @@ public class NPCVehicleMount : MonoBehaviour
             Debug.Log($"[NPCVehicleMount] {name} | NavMeshAgent disabled.", this);
         }
 
+        SetPhysicsEnabled(false);
         CacheOriginalVisualState();
 
         if (_currentBackSeat.SeatPoint != null)
@@ -177,48 +257,161 @@ public class NPCVehicleMount : MonoBehaviour
 
         Debug.Log($"[NPCVehicleMount] {name} | MOUNTED seat '{_currentBackSeat.SeatName}' | IsOccupied={_currentBackSeat.IsOccupied}", this);
 
+        if (npcAnimator != null)
+        {
+            _isPlayingSitAnim = true;
+            _sitAnimTimer = maxSitAnimWait;
+            npcAnimator.PlayStandToSit();
+            Debug.Log($"[NPCVehicleMount] {name} | Sit animation triggered. Timeout in {maxSitAnimWait}s if no callback.", this);
+        }
+        else
+        {
+            if (brain != null)
+                brain.OnSeated();
+        }
+    }
+
+    private void HandleSitComplete()
+    {
+        if (!_isMounted)
+            return;
+
+        _isPlayingSitAnim = false;
+
+        Debug.Log($"[NPCVehicleMount] {name} | Sit animation complete. NPC is now fully seated.", this);
+
         if (brain != null)
             brain.OnSeated();
     }
 
+    // ── EXIT FLOW ──
+    // Step 1: ExitVehicle()    → play stand animation ON THE SEAT (NPC stays parented to seat)
+    // Step 2: HandleStandComplete() → animation done, now detach + teleport to exit point
+    // Step 3: ResumeAfterExit()     → tell brain to resume roaming
+
     public void ExitVehicle()
     {
-        if (!_isMounted || _currentBackSeat == null)
+        if (!_isMounted || _currentBackSeat == null || _isPlayingExitAnim)
+            return;
+
+        if (npcAnimator != null)
+        {
+            // Play stand-up animation while NPC is still on the seat
+            _isPlayingExitAnim = true;
+            _exitAnimTimer = maxExitAnimWait;
+            npcAnimator.PlaySitToStand();
+            Debug.Log($"[NPCVehicleMount] {name} | Stand animation playing ON seat '{_currentBackSeat.SeatName}'. " +
+                      $"NPC will detach after animation finishes (or timeout in {maxExitAnimWait}s).", this);
+        }
+        else
+        {
+            // No animator — detach and resume immediately
+            DetachFromSeat();
+            ResumeAfterExit();
+        }
+    }
+
+    private void HandleStandComplete()
+    {
+        if (!_isPlayingExitAnim)
+            return;
+
+        _isPlayingExitAnim = false;
+
+        Debug.Log($"[NPCVehicleMount] {name} | Stand animation complete. Now detaching from seat.", this);
+
+        // Animation is done — NOW detach and teleport to exit point
+        DetachFromSeat();
+        ResumeAfterExit();
+    }
+
+    /// <summary>
+    /// Detaches the NPC from the seat: restores visual, repositions to exit point,
+    /// re-enables physics and NavMeshAgent, frees the seat.
+    /// Only called AFTER the stand-up animation finishes.
+    /// </summary>
+    private void DetachFromSeat()
+    {
+        if (_currentBackSeat == null)
             return;
 
         string seatName = _currentBackSeat.SeatName;
-        Debug.Log($"[NPCVehicleMount] {name} | Exiting seat '{seatName}'...", this);
+        Debug.Log($"[NPCVehicleMount] {name} | Detaching from seat '{seatName}'...", this);
 
         NPCBackSeat previousSeat = _currentBackSeat;
 
+        // Restore visual root back to NPC parent
         RestoreVisualRoot();
 
+        // Reposition NPC to exit point
         Transform exitTarget = previousSeat.ExitPoint;
         if (exitTarget == null && _currentTukTuk != null)
             exitTarget = _currentTukTuk.ExitPoint;
         if (exitTarget == null && _currentTukTuk != null)
             exitTarget = _currentTukTuk.transform;
 
-        transform.position = exitTarget.position;
-        transform.rotation = Quaternion.Euler(0f, exitTarget.eulerAngles.y, 0f);
+        if (exitTarget != null)
+        {
+            transform.position = exitTarget.position;
+            transform.rotation = Quaternion.Euler(0f, exitTarget.eulerAngles.y, 0f);
+        }
+        else
+        {
+            Debug.LogWarning($"[NPCVehicleMount] {name} | No exit point found! NPC will exit at current position.", this);
+        }
 
+        // Re-enable physics
+        SetPhysicsEnabled(true);
+
+        // Re-enable NavMeshAgent and warp to valid NavMesh position
         if (_agent != null)
         {
             _agent.enabled = true;
-            Debug.Log($"[NPCVehicleMount] {name} | NavMeshAgent re-enabled.", this);
+
+            if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            {
+                _agent.Warp(hit.position);
+                Debug.Log($"[NPCVehicleMount] {name} | NavMeshAgent re-enabled & warped to {hit.position}.", this);
+            }
+            else
+            {
+                Debug.LogWarning($"[NPCVehicleMount] {name} | NavMeshAgent re-enabled but no valid NavMesh position found near {transform.position}!", this);
+            }
         }
 
+        // Free the seat
         previousSeat.OnNPCExited(this);
 
+        // Clear references
         _currentBackSeat = null;
         _currentTukTuk = null;
         _isMounted = false;
         _isWalkingToSeat = false;
 
-        Debug.Log($"[NPCVehicleMount] {name} | EXITED seat '{seatName}' | Seat IsOccupied={previousSeat.IsOccupied}", this);
+        Debug.Log($"[NPCVehicleMount] {name} | Detached from seat '{seatName}' | Seat IsOccupied={previousSeat.IsOccupied}", this);
+    }
+
+    private void ResumeAfterExit()
+    {
+        Debug.Log($"[NPCVehicleMount] {name} | Resuming NPC behaviour after vehicle exit.", this);
 
         if (brain != null)
             brain.OnExitedVehicle();
+    }
+
+    private void SetPhysicsEnabled(bool enabled)
+    {
+        if (_capsuleCollider != null)
+        {
+            _capsuleCollider.enabled = enabled;
+            Debug.Log($"[NPCVehicleMount] {name} | CapsuleCollider {(enabled ? "enabled" : "disabled")}.", this);
+        }
+
+        if (_rigidbody != null)
+        {
+            _rigidbody.isKinematic = !enabled;
+            Debug.Log($"[NPCVehicleMount] {name} | Rigidbody isKinematic={!enabled}.", this);
+        }
     }
 
     private void ApplyVisualSeatAlignment()
