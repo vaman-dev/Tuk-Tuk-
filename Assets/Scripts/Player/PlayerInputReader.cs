@@ -25,6 +25,7 @@ public class PlayerInputReader : MonoBehaviour
     [SerializeField] private string driveActionName = "Drive";
     [SerializeField] private string brakeActionName = "Brake";
     [SerializeField] private string exitVehicleActionName = "ExitVehicle";
+    [SerializeField] private string vehicleLookActionName = "Look";
 
     [Header("Player Inputs")]
     public Vector2 MoveInput { get; private set; }
@@ -59,6 +60,7 @@ public class PlayerInputReader : MonoBehaviour
     private InputAction _driveAction;
     private InputAction _brakeAction;
     private InputAction _exitVehicleAction;
+    private InputAction _vehicleLookAction;
 
     private void Awake()
     {
@@ -117,6 +119,7 @@ public class PlayerInputReader : MonoBehaviour
         _driveAction = _vehicleMap?.FindAction(driveActionName, false);
         _brakeAction = _vehicleMap?.FindAction(brakeActionName, false);
         _exitVehicleAction = _vehicleMap?.FindAction(exitVehicleActionName, false);
+        _vehicleLookAction = _vehicleMap?.FindAction(vehicleLookActionName, false);
 
         ValidateAction(_moveAction, moveActionName, playerMapName);
         ValidateAction(_lookAction, lookActionName, playerMapName);
@@ -229,6 +232,12 @@ public class PlayerInputReader : MonoBehaviour
         {
             _exitVehicleAction.performed += OnExitVehiclePerformed;
         }
+
+        if (_vehicleLookAction != null)
+        {
+            _vehicleLookAction.performed += OnLookPerformed;
+            _vehicleLookAction.canceled += OnLookCanceled;
+        }
     }
 
     private void UnsubscribeVehicleActions()
@@ -254,6 +263,12 @@ public class PlayerInputReader : MonoBehaviour
         if (_exitVehicleAction != null)
         {
             _exitVehicleAction.performed -= OnExitVehiclePerformed;
+        }
+
+        if (_vehicleLookAction != null)
+        {
+            _vehicleLookAction.performed -= OnLookPerformed;
+            _vehicleLookAction.canceled -= OnLookCanceled;
         }
     }
 
