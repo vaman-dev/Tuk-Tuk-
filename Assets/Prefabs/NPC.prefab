@@ -168,7 +168,7 @@ MonoBehaviour:
   visualRoot: {fileID: 5827319160797224681}
   alignVisualToSeatPoint: 1
   maxSitAnimWait: 1.5
-  maxExitAnimWait: 2.2
+  maxExitAnimWait: 1.3
 --- !u!114 &4071060571193157852
 MonoBehaviour:
   m_ObjectHideFlags: 0
