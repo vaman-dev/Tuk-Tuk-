@@ -340,6 +340,11 @@ public class NPCVehicleMount : MonoBehaviour
 
         NPCBackSeat previousSeat = _currentBackSeat;
 
+        // Force-clear the sitting flag so locomotion Speed updates resume.
+        // This covers the timeout path where the Animation Event never fired.
+        if (npcAnimator != null)
+            npcAnimator.ForceResetSittingState();
+
         // Restore visual root back to NPC parent
         RestoreVisualRoot();
 

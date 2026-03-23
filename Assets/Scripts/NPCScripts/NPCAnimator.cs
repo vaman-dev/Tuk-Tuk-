@@ -117,6 +117,23 @@ public class NPCAnimator : MonoBehaviour
         Debug.Log($"[NPCAnimator] {name} | PlaySitToStand triggered.", this);
     }
 
+    /// <summary>
+    /// Force-resets the sitting state so locomotion updates resume.
+    /// Call this when the exit flow completes externally (e.g. timeout)
+    /// and the Animation Event may not have fired.
+    /// </summary>
+    public void ForceResetSittingState()
+    {
+        if (!_isSitting)
+            return;
+
+        _isSitting = false;
+        animator.SetBool(HashIsSitting, false);
+        animator.SetFloat(HashSpeed, 0f);
+
+        Debug.Log($"[NPCAnimator] {name} | ForceResetSittingState: _isSitting cleared, Speed reset to 0.", this);
+    }
+
     // ──────────────────────────────────────────────
     //  Animation Event Callbacks
     //  Add these as Animation Events on the last
